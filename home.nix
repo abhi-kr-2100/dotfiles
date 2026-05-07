@@ -150,6 +150,11 @@ in
     };
   };
 
+  programs.opencode = {
+    enable = true;
+    web.enable = true;
+  };
+
   programs.zed-editor = {
     enable = true;
     userSettings = {
