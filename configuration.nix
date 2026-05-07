@@ -36,8 +36,6 @@
     variant = "";
   };
 
-  services.printing.enable = true;
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -73,4 +71,29 @@
   programs.dconf.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  environment.gnome.excludePackages = (with pkgs; [
+    baobab
+    cheese
+    epiphany
+    gedit
+    gnome-calendar
+    gnome-clocks
+    gnome-connections
+    gnome-contacts
+    gnome-console
+    gnome-font-viewer
+    gnome-logs
+    gnome-maps
+    gnome-music
+    gnome-system-monitor
+    gnome-text-editor
+    gnome-tour
+    gnome-user-docs
+    gnome-weather
+    simple-scan
+    snapshot
+    xterm
+  ]) ++ (with pkgs.gnome; [
+  ]);
 }
