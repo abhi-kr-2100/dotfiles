@@ -162,7 +162,6 @@ in
   };
 
   home.packages = with pkgs; [
-    amp-cli
     gemini-cli
     gnomeExtensions.copyous
     mistral-vibe
