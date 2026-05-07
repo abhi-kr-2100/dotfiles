@@ -26,7 +26,6 @@ in
 
   ###################################################################
 
-  nixpkgs.config.allowUnfree = true;
 
   dconf.settings = {
     "org/gnome/desktop/break-reminders" = {
