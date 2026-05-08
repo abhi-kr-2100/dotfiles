@@ -178,6 +178,7 @@ in
     gemini-cli
     gnomeExtensions.copyous
     mistral-vibe
+    pokerth
     warp-terminal
   ];
 }
