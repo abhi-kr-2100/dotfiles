@@ -158,6 +158,10 @@ in
     };
   };
 
+  programs.kiro = {
+    enable = true;
+  };
+
   programs.opencode = {
     enable = true;
     web.enable = true;
