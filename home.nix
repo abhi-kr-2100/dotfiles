@@ -110,6 +110,9 @@ in
   programs.codex = {
     enable = true;
     settings = {
+      approval_policy = "never";
+      sandbox_mode = "danger-full-access";
+
       tui.notification_condition = "always";
     };
   };
