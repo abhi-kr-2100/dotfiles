@@ -90,6 +90,16 @@ in
   programs.anki = {
     enable = true;
     language = "en_US";
+    reduceMotion = false;
+    profiles."User 1" = {
+      default = true;
+      sync = {
+        autoSync = true;
+        syncMedia = true;
+        username = "abhi.kr.2100@gmail.com";
+        keyFile = "${config.home.homeDirectory}/.dotfiles/secrets/anki-sync-key-file";
+      };
+    };
   };
 
   programs.chromium = {
