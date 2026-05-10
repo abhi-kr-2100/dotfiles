@@ -122,6 +122,7 @@ in
         line-number = "relative";
         mouse = false;
         default-yank-register = "+";
+        soft-wrap.enable = true;
 
         cursor-shape = {
           insert = "bar";
