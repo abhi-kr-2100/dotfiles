@@ -45,17 +45,6 @@
     pulse.enable = true;
   };
 
-  users.users.abhi = {
-    isNormalUser = true;
-    description = "Abhishek Kumar";
-    extraGroups = [ "networkmanager" "wheel" ];
-
-    packages = with pkgs; [
-    ];
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
   ];
 
@@ -63,10 +52,23 @@
 
   ###################################################################
 
+  users.users.abhi = {
+    isNormalUser = true;
+    description = "Abhishek Kumar";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+
+    packages = with pkgs; [
+    ];
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 
   programs.dconf.enable = true;
 
