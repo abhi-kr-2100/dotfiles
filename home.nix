@@ -197,6 +197,8 @@ in
     gnomeExtensions.copyous
     mistral-vibe
     pokerth
+    quickemu
+    quickgui
     warp-terminal
   ];
 }

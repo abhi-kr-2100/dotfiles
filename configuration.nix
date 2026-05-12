@@ -55,11 +55,13 @@
   users.users.abhi = {
     isNormalUser = true;
     description = "Abhishek Kumar";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "libvirtd" ];
 
     packages = with pkgs; [
     ];
   };
+
+  virtualisation.libvirtd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
