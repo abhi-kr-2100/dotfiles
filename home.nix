@@ -194,6 +194,7 @@ in
   home.packages = with pkgs; [
     gemini-cli
     gnomeExtensions.copyous
+    lsof
     mistral-vibe
     pokerth
     quickemu
