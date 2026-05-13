@@ -75,6 +75,7 @@
   programs.dconf.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.extraOptions = "!include /home/abhi/.dotfiles/secrets/nix.conf";
 
   environment.gnome.excludePackages = (with pkgs; [
     baobab
