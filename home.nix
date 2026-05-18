@@ -35,6 +35,18 @@ in
       switch-windows-backward = ["<Shift><Alt>Tab"];
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>period";
+      command = "smile";
+      name = "Smile Emoji Picker";
+    };
+
     "org/gnome/desktop/break-reminders" = {
       selected-breaks = [ "eyesight" "movement" ];
     };
@@ -78,6 +90,7 @@ in
       disable-user-extensions = false;
       enabled-extensions = with pkgs.gnomeExtensions; [
         copyous.extensionUuid
+        smile-complementary-extension.extensionUuid
       ];
     };
 
@@ -194,11 +207,13 @@ in
   home.packages = with pkgs; [
     gemini-cli
     gnomeExtensions.copyous
+    gnomeExtensions.smile-complementary-extension
     lsof
     mistral-vibe
     pokerth
     quickemu
     quickgui
+    smile
     warp-terminal
   ];
 }
