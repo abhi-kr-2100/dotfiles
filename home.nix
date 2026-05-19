@@ -118,6 +118,8 @@ in
     };
   };
 
+  programs.antigravity.enable = true;
+
   programs.chromium = {
     enable = true;
     package = pkgs.microsoft-edge;
