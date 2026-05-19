@@ -41,6 +41,10 @@ in
       ];
     };
 
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = [ "compose:ralt" ];
+    };
+
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>period";
       command = "smile";
