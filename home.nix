@@ -199,6 +199,8 @@ in
     web.enable = true;
   };
 
+  programs.ripgrep.enable = true;
+
   programs.zed-editor = {
     enable = true;
     userSettings = {
