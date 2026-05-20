@@ -36,6 +36,11 @@
     variant = "";
   };
 
+  services.udev.extraHwdb = ''
+    evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
+     KEYBOARD_KEY_3a=leftshift
+  '';
+
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
