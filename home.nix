@@ -137,6 +137,8 @@ in
     };
   };
 
+  programs.cursor.enable = true;
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
