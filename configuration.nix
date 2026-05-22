@@ -36,11 +36,6 @@
     variant = "";
   };
 
-  services.udev.extraHwdb = ''
-    evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
-     KEYBOARD_KEY_3a=leftshift
-  '';
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -78,6 +73,17 @@
   virtualisation.docker.enable = true;
 
   programs.dconf.enable = true;
+
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings.main = {
+        rightalt = "backspace";
+        capslock = "leftshift";
+      };
+    };
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.extraOptions = "!include /home/abhi/.dotfiles/secrets/nix.conf";

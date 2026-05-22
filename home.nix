@@ -43,7 +43,7 @@ in
 
     "org/gnome/desktop/input-sources" = {
       xkb-options = [
-        "compose:ralt"
+        "compose:rctrl"
       ];
     };
 
