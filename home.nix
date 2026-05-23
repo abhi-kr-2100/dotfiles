@@ -139,6 +139,8 @@ in
 
   programs.cursor.enable = true;
 
+  programs.github-copilot-cli.enable = true;
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
