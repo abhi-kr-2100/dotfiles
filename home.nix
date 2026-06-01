@@ -207,6 +207,8 @@ in
 
   programs.ripgrep.enable = true;
 
+  programs.windsurf.enable = true;
+
   programs.zed-editor = {
     enable = true;
     userSettings = {
