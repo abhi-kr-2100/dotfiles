@@ -200,6 +200,8 @@ in
     enable = true;
   };
 
+  programs.obs-studio.enable = true;
+
   programs.opencode = {
     enable = true;
     web.enable = true;
