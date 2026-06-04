@@ -143,7 +143,6 @@ in
 
   programs.helix = {
     enable = true;
-    defaultEditor = true;
     settings = {
       editor = {
         line-number = "relative";
@@ -212,6 +211,7 @@ in
   programs.windsurf.enable = true;
 
   programs.zed-editor = {
+    defaultEditor = true;
     enable = true;
     userSettings = {
       helix_mode = true;
