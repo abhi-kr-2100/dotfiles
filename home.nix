@@ -125,6 +125,10 @@ in
   programs.chromium = {
     enable = true;
     package = pkgs.microsoft-edge;
+    commandLineArgs = [
+      "--disable-features=ElasticOverscroll"
+      "--ozone-platform-hint=auto"
+    ];
   };
 
   programs.codex = {
