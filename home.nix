@@ -134,6 +134,11 @@ in
       sandbox_mode = "danger-full-access";
 
       tui.notification_condition = "always";
+
+      projects = {
+        "${config.home.homeDirectory}/Projects/CatLauncher".trust_level = "trusted";
+        "${config.home.homeDirectory}/Projects/github-mock-api".trust_level = "trusted";
+      };
     };
   };
 
