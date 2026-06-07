@@ -121,6 +121,7 @@ in
   };
 
   programs.antigravity.enable = true;
+  programs.antigravity-cli.enable = true;
 
   programs.chromium = {
     enable = true;
@@ -232,7 +233,6 @@ in
   };
 
   home.packages = with pkgs; [
-    gemini-cli
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
     lsof
