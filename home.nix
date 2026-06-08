@@ -223,8 +223,6 @@ in
 
   programs.ripgrep.enable = true;
 
-  programs.windsurf.enable = true;
-
   programs.zed-editor = {
     defaultEditor = true;
     enable = true;
@@ -238,11 +236,11 @@ in
   };
 
   home.packages = with pkgs; [
+    blender
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
     lsof
     mistral-vibe
-    pokerth
     quickemu
     quickgui
     smile
