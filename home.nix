@@ -123,6 +123,14 @@ in
   programs.antigravity.enable = true;
   programs.antigravity-cli.enable = true;
 
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    shellAliases = {
+      rm = ''echo "This is not the command you are looking for."; false'';
+    };
+  };
+
   programs.chromium = {
     enable = true;
     package = pkgs.microsoft-edge;
@@ -244,6 +252,7 @@ in
     quickemu
     quickgui
     smile
+    trash-cli
     warp-terminal
   ];
 }
