@@ -245,6 +245,7 @@ in
 
   home.packages = with pkgs; [
     blender
+    dua
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
     gpu-screen-recorder-gtk
