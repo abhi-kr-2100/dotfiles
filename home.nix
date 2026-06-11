@@ -247,6 +247,7 @@ in
     blender
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
+    gpu-screen-recorder-gtk
     lsof
     mistral-vibe
     quickemu

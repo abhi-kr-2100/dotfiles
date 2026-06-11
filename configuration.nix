@@ -52,6 +52,13 @@
 
   ###################################################################
 
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
+
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 524288;
   };
