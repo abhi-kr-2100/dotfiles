@@ -245,6 +245,7 @@ in
 
   home.packages = with pkgs; [
     blender
+    devin-cli
     dua
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
