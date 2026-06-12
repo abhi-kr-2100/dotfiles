@@ -246,6 +246,7 @@ in
     blender
     devin-cli
     dua
+    ffmpeg
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
