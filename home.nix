@@ -246,6 +246,7 @@ in
     blender
     devin-cli
     dua
+    fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
     gpu-screen-recorder-gtk
