@@ -13,18 +13,17 @@ in
 
   home.stateVersion = "25.11";
 
-  home.file = {
-    ".local/share/copyous@boerdereinar.dev/highlight.min.js" = {
-      source = highlightJs;
-    };
-  };
-
   home.sessionVariables = {
   };
 
   programs.home-manager.enable = true;
 
   ###################################################################
+
+  home.file.".local/share/copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
+
+  home.file.".config/warp-terminal/settings.toml".source = ./config-files/warp-terminal/settings.toml;
+  home.file.".config/warp-terminal/user_preferences.json".source = ./config-files/warp-terminal/user_preferences.json;
 
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
