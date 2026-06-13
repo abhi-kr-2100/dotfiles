@@ -13,17 +13,22 @@ in
 
   home.stateVersion = "25.11";
 
-  home.sessionVariables = {
-  };
-
   programs.home-manager.enable = true;
 
   ###################################################################
 
-  home.file.".local/share/copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
+  home.sessionVariables = {
+    TERMINAL = "ghostty";
+  };
 
-  home.file.".config/warp-terminal/settings.toml".source = ./config-files/warp-terminal/settings.toml;
-  home.file.".config/warp-terminal/user_preferences.json".source = ./config-files/warp-terminal/user_preferences.json;
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "com.mitchellh.ghostty.desktop" ];
+    };
+  };
+
+  home.file.".local/share/copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
 
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
@@ -89,7 +94,7 @@ in
     };
 
     "org/gnome/shell" = {
-      favorite-apps = [ "microsoft-edge.desktop" "dev.warp.Warp.desktop" "org.gnome.Nautilus.desktop" ];
+      favorite-apps = [ "microsoft-edge.desktop" "com.mitchellh.ghostty.desktop" "dev.zed.Zed.desktop" "org.gnome.Nautilus.desktop" ];
       last-selected-power-profile = "performance";
 
       disable-user-extensions = false;
@@ -189,6 +194,17 @@ in
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      copy-on-select = "clipboard";
+      font-family = "Fira Code";
+      font-size = 16.0;
+      fullscreen = true;
+      window-show-tab-bar = "never";
+    };
+  };
+
   programs.git = {
     enable = true;
     settings = {
@@ -257,6 +273,5 @@ in
     quickgui
     smile
     trash-cli
-    warp-terminal
   ];
 }
