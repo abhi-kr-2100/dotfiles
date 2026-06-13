@@ -161,6 +161,12 @@ in
 
   programs.cursor.enable = true;
 
+  programs.eza = {
+    enable = true;
+    git = true;
+    icons = true;
+  };
+
   programs.github-copilot-cli.enable = true;
 
   programs.helix = {
