@@ -277,5 +277,6 @@ in
     quickemu
     quickgui
     smile
+    waydroid-helper
   ];
 }
