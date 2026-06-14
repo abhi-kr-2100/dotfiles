@@ -203,6 +203,7 @@ in
   programs.ghostty = {
     enable = true;
     settings = {
+      app-notifications = "no-clipboard-copy";
       copy-on-select = "clipboard";
       font-family = "Fira Code";
       font-size = 16.0;
