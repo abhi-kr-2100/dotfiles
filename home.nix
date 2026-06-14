@@ -127,11 +127,15 @@ in
   programs.antigravity.enable = true;
   programs.antigravity-cli.enable = true;
 
-  programs.bash = {
+  programs.carapace = {
     enable = true;
-    enableCompletion = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.nushell = {
+    enable = true;
     shellAliases = {
-      rm = ''echo "This is not the command you are looking for."; false'';
+      rm = "rm -t";
     };
   };
 
@@ -160,12 +164,6 @@ in
   };
 
   programs.cursor.enable = true;
-
-  programs.eza = {
-    enable = true;
-    git = true;
-    icons = true;
-  };
 
   programs.github-copilot-cli.enable = true;
 
@@ -279,6 +277,5 @@ in
     quickemu
     quickgui
     smile
-    trash-cli
   ];
 }

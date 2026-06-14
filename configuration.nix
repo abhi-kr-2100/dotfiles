@@ -47,6 +47,7 @@
 
   environment.systemPackages = with pkgs; [
   ];
+  environment.shells = [ pkgs.nushell ];
 
   system.stateVersion = "25.11";
 
@@ -66,6 +67,7 @@
   users.users.abhi = {
     isNormalUser = true;
     description = "Abhishek Kumar";
+    shell = pkgs.nushell;
     extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "libvirtd" ];
 
     packages = with pkgs; [
