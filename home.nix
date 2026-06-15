@@ -237,6 +237,11 @@ in
     enable = true;
   };
 
+  programs.nix-your-shell = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
