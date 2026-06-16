@@ -165,6 +165,12 @@ in
 
   programs.cursor.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableNushellIntegration = true;
+  };
+
   programs.github-copilot-cli.enable = true;
 
   programs.helix = {

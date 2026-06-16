@@ -81,11 +81,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   virtualisation.docker.enable = true;
 
   programs.dconf.enable = true;
