@@ -248,13 +248,6 @@ in
     enableNushellIntegration = true;
   };
 
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-    ];
-  };
-
   programs.opencode = {
     enable = true;
     web.enable = true;
@@ -275,18 +268,12 @@ in
   };
 
   home.packages = with pkgs; [
-    blender
     devin-cli
     dua
-    ffmpeg
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
-    gpu-screen-recorder-gtk
     lsof
-    mistral-vibe
-    quickemu
-    quickgui
     smile
     waydroid-helper
   ];
