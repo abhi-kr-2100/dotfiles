@@ -275,6 +275,7 @@ in
     gnomeExtensions.smile-complementary-extension
     lsof
     smile
+    tome4
     waydroid-helper
   ];
 }
