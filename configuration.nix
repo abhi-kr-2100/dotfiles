@@ -32,6 +32,7 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.xserver.xkb = {
+    options = "compose:ins";
     layout = "us";
     variant = "";
   };

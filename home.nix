@@ -45,14 +45,8 @@ in
       ];
     };
 
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = [
-        "compose:rctrl"
-      ];
-    };
-
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>period";
+      binding = "<Primary>period";
       command = "smile";
       name = "Smile Emoji Picker";
     };
