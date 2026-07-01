@@ -262,8 +262,11 @@ in
   };
 
   home.packages = with pkgs; [
+    boohu
+    brogue-ce
     devin-cli
     dua
+    dwarf-fortress
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
