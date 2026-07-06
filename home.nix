@@ -274,5 +274,6 @@ in
     smile
     tome4
     waydroid-helper
+    yt-dlp
   ];
 }
