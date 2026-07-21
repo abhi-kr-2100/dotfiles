@@ -263,7 +263,7 @@ in
   };
 
   home.packages = with pkgs; [
-    devin-cli
+    devin-desktop
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
