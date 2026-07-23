@@ -243,11 +243,6 @@ in
     enableNushellIntegration = true;
   };
 
-  programs.opencode = {
-    enable = true;
-    web.enable = true;
-  };
-
   programs.ripgrep.enable = true;
 
   programs.zed-editor = {
@@ -267,6 +262,7 @@ in
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
+    opencode-desktop
     smile
     yt-dlp
   ];
