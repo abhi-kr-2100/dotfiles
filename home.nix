@@ -222,6 +222,8 @@ in
     };
   };
 
+  programs.jq.enable = true;
+
   programs.jujutsu = {
     enable = true;
     settings = {
