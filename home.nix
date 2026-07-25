@@ -207,7 +207,10 @@ in
       font-family = "Fira Code";
       font-size = 16.0;
       fullscreen = true;
+      tab-inherit-working-directory = false;
+      window-inherit-working-directory = false;
       window-show-tab-bar = "never";
+      working-directory = "home";
     };
   };
 
