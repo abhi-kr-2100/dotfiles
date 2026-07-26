@@ -270,6 +270,7 @@ in
     gnomeExtensions.smile-complementary-extension
     opencode-desktop
     smile
+    unzip
     waydroid-helper
     yt-dlp
   ];
