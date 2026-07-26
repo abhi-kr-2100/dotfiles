@@ -269,6 +269,7 @@ in
     gnomeExtensions.smile-complementary-extension
     opencode-desktop
     smile
+    waydroid-helper
     yt-dlp
   ];
 }
