@@ -154,6 +154,7 @@ in
         "${config.home.homeDirectory}/Projects/CatLauncher".trust_level = "trusted";
         "${config.home.homeDirectory}/Projects/github-mock-api".trust_level = "trusted";
         "${config.home.homeDirectory}/Projects/soloquy".trust_level = "trusted";
+        "${config.home.homeDirectory}/.dotfiles".trust_level = "trusted";
       };
     };
   };
