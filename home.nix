@@ -268,6 +268,10 @@ in
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
+    (mistral-vibe.overrideAttrs (old: {
+      doCheck = false;
+      doInstallCheck = false;
+    }))
     opencode-desktop
     smile
     unzip
