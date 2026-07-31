@@ -272,6 +272,7 @@ in
       doCheck = false;
       doInstallCheck = false;
     }))
+    nixfmt
     opencode-desktop
     smile
     unzip
