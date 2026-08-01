@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   gvariant = lib.hm.gvariant;
@@ -32,11 +37,11 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
-      switch-applications = [];
-      switch-applications-backward = [];
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
 
-      switch-windows = ["<Alt>Tab"];
-      switch-windows-backward = ["<Shift><Alt>Tab"];
+      switch-windows = [ "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Alt>Tab" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -52,7 +57,10 @@ in
     };
 
     "org/gnome/desktop/break-reminders" = {
-      selected-breaks = [ "eyesight" "movement" ];
+      selected-breaks = [
+        "eyesight"
+        "movement"
+      ];
     };
 
     "org/gnome/desktop/break-reminders/eyesight" = {
@@ -88,7 +96,12 @@ in
     };
 
     "org/gnome/shell" = {
-      favorite-apps = [ "microsoft-edge.desktop" "com.mitchellh.ghostty.desktop" "dev.zed.Zed.desktop" "org.gnome.Nautilus.desktop" ];
+      favorite-apps = [
+        "microsoft-edge.desktop"
+        "com.mitchellh.ghostty.desktop"
+        "dev.zed.Zed.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
       last-selected-power-profile = "performance";
 
       disable-user-extensions = false;
@@ -154,6 +167,7 @@ in
         "${config.home.homeDirectory}/Projects/CatLauncher".trust_level = "trusted";
         "${config.home.homeDirectory}/Projects/github-mock-api".trust_level = "trusted";
         "${config.home.homeDirectory}/Projects/soloquy".trust_level = "trusted";
+        "${config.home.homeDirectory}/Projects/savant".trust_level = "trusted";
         "${config.home.homeDirectory}/.dotfiles".trust_level = "trusted";
       };
     };
@@ -240,14 +254,15 @@ in
     };
   };
 
-  programs.kiro = {
-    enable = true;
-  };
+  programs.kiro.enable = true;
+  programs.kiro-cli.enable = true;
 
   programs.nix-your-shell = {
     enable = true;
     enableNushellIntegration = true;
   };
+
+  programs.opencode.enable = true;
 
   programs.ripgrep.enable = true;
 
@@ -264,6 +279,8 @@ in
   };
 
   home.packages = with pkgs; [
+    cursor-cli
+    devin-cli
     devin-desktop
     fira-code
     gnomeExtensions.copyous
