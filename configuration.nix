@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -69,7 +68,13 @@
     isNormalUser = true;
     description = "Abhishek Kumar";
     shell = pkgs.nushell;
-    extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "kvm"
+      "libvirtd"
+    ];
 
     packages = with pkgs; [
     ];
@@ -97,30 +102,35 @@
     };
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.extraOptions = "!include /home/abhi/.dotfiles/secrets/nix.conf";
 
-  environment.gnome.excludePackages = (with pkgs; [
-    baobab
-    cheese
-    epiphany
-    gedit
-    gnome-calendar
-    gnome-clocks
-    gnome-connections
-    gnome-contacts
-    gnome-console
-    gnome-font-viewer
-    gnome-logs
-    gnome-maps
-    gnome-music
-    gnome-text-editor
-    gnome-tour
-    gnome-user-docs
-    gnome-weather
-    simple-scan
-    snapshot
-    xterm
-  ]) ++ (with pkgs.gnome; [
-  ]);
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      baobab
+      cheese
+      epiphany
+      gedit
+      gnome-calendar
+      gnome-clocks
+      gnome-connections
+      gnome-contacts
+      gnome-console
+      gnome-font-viewer
+      gnome-logs
+      gnome-maps
+      gnome-music
+      gnome-text-editor
+      gnome-tour
+      gnome-user-docs
+      gnome-weather
+      simple-scan
+      snapshot
+      xterm
+    ])
+    ++ (with pkgs.gnome; [
+    ]);
 }
