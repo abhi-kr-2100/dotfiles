@@ -286,6 +286,7 @@ in
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
+    llama-cpp
     (mistral-vibe.overrideAttrs (old: {
       doCheck = false;
       doInstallCheck = false;
