@@ -280,6 +280,7 @@ in
   };
 
   home.packages = with pkgs; [
+    blender
     cursor-cli
     devin-cli
     devin-desktop
