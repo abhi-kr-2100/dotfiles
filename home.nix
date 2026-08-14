@@ -280,6 +280,7 @@ in
   };
 
   home.packages = with pkgs; [
+    amp-cli
     blender
     cursor-cli
     devin-cli
