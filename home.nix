@@ -293,6 +293,7 @@ in
       doCheck = false;
       doInstallCheck = false;
     }))
+    nixd
     nixfmt
     opencode-desktop
     smile
