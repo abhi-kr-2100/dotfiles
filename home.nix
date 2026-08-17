@@ -296,6 +296,7 @@ in
     nixd
     nixfmt
     opencode-desktop
+    skills
     smile
     unzip
     waydroid-helper
