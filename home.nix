@@ -188,6 +188,7 @@ in
     enable = true;
     settings = {
       editor = {
+        auto-format = true;
         line-number = "relative";
         mouse = false;
         default-yank-register = "+";
@@ -199,6 +200,16 @@ in
           select = "underline";
         };
       };
+    };
+    languages = {
+      language = [
+        {
+          name = "rust";
+          formatter = {
+            command = "rustfmt";
+          };
+        }
+      ];
     };
   };
 
