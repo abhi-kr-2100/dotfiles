@@ -97,7 +97,7 @@ in
 
     "org/gnome/shell" = {
       favorite-apps = [
-        "microsoft-edge.desktop"
+        "google-chrome.desktop"
         "com.mitchellh.ghostty.desktop"
         "dev.zed.Zed.desktop"
         "org.gnome.Nautilus.desktop"
@@ -148,7 +148,7 @@ in
 
   programs.chromium = {
     enable = true;
-    package = pkgs.microsoft-edge;
+    package = pkgs.google-chrome;
     commandLineArgs = [
       "--disable-features=ElasticOverscroll"
       "--ozone-platform-hint=auto"

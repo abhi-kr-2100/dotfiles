@@ -91,6 +91,13 @@
 
   programs.dconf.enable = true;
 
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "ddkjiahejlhfcafbddmgiahcphecmpfh;https://clients2.google.com/service/update2/crx" # uBlock Origin Lite
+    ];
+  };
+
   services.keyd = {
     enable = true;
     keyboards.default = {
