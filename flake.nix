@@ -1,5 +1,5 @@
 {
-  description = "Portable computer.";
+  description = "Box";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,7 +17,7 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.box = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [

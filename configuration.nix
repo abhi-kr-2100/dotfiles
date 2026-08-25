@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -8,9 +8,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "nixos";
+  networking.hostName = "box";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Kolkata";
@@ -19,12 +17,12 @@
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
     LC_MEASUREMENT = "en_IN";
-    LC_MONETARY = "en_IN";
+    LC_MONETARY = "en_US.UTF-8";
     LC_NAME = "en_IN";
-    LC_NUMERIC = "en_IN";
+    LC_NUMERIC = "en_US.UTF-8";
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
+    LC_TIME = "en_DK.UTF-8";
   };
 
   services.xserver.enable = true;
@@ -45,8 +43,6 @@
     pulse.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-  ];
   environment.shells = [ pkgs.nushell ];
 
   system.stateVersion = "25.11";
@@ -61,7 +57,7 @@
   };
 
   boot.kernel.sysctl = {
-    "fs.inotify.max_user_watches" = 524288;
+    "fs.inotify.max_user_watches" = 10485760;
   };
 
   users.users.abhi = {
@@ -72,18 +68,8 @@
       "networkmanager"
       "wheel"
       "docker"
-      "kvm"
-      "libvirtd"
-    ];
-
-    packages = with pkgs; [
     ];
   };
-
-  virtualisation.waydroid.enable = true;
-  virtualisation.waydroid.package = pkgs.waydroid-nftables;
-
-  virtualisation.libvirtd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -115,8 +101,9 @@
   ];
   nix.extraOptions = "!include /home/abhi/.dotfiles/secrets/nix.conf";
 
-  environment.gnome.excludePackages =
-    (with pkgs; [
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
       baobab
       cheese
       epiphany
@@ -137,7 +124,6 @@
       simple-scan
       snapshot
       xterm
-    ])
-    ++ (with pkgs.gnome; [
-    ]);
+    ]
+  );
 }

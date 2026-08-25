@@ -22,10 +22,6 @@ in
 
   ###################################################################
 
-  home.sessionVariables = {
-    TERMINAL = "ghostty";
-  };
-
   xdg.terminal-exec = {
     enable = true;
     settings = {
@@ -131,7 +127,6 @@ in
     };
   };
 
-  programs.antigravity.enable = true;
   programs.antigravity-cli.enable = true;
 
   programs.carapace = {
@@ -266,7 +261,6 @@ in
     };
   };
 
-  programs.kiro.enable = true;
   programs.kiro-cli.enable = true;
 
   programs.nix-your-shell = {
@@ -292,10 +286,7 @@ in
 
   home.packages = with pkgs; [
     amp-cli
-    blender
-    cursor-cli
     devin-cli
-    devin-desktop
     fira-code
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
@@ -306,11 +297,9 @@ in
     }))
     nixd
     nixfmt
-    opencode-desktop
     skills
     smile
     unzip
-    waydroid-helper
     yt-dlp
   ];
 }
