@@ -65,9 +65,10 @@
     description = "Abhishek Kumar";
     shell = pkgs.nushell;
     extraGroups = [
+      "docker"
+      "kvm"
       "networkmanager"
       "wheel"
-      "docker"
     ];
   };
 
