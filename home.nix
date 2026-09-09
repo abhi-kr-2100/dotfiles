@@ -129,6 +129,8 @@ in
 
   programs.antigravity-cli.enable = true;
 
+  programs.aria2.enable = true;
+
   programs.carapace = {
     enable = true;
     enableNushellIntegration = true;
@@ -299,6 +301,7 @@ in
     nixfmt
     skills
     smile
+    steam-run
     unzip
     yt-dlp
   ];
