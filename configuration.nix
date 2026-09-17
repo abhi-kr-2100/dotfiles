@@ -85,6 +85,8 @@
     ];
   };
 
+  programs.gamemode.enable = true;
+
   services.keyd = {
     enable = true;
     keyboards.default = {
