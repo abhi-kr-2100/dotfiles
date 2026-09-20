@@ -51,6 +51,7 @@
 
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
     ];
@@ -75,6 +76,7 @@
   nixpkgs.config.allowUnfree = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
 
   programs.dconf.enable = true;
 

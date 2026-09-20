@@ -301,6 +301,7 @@ in
     nixfmt
     skills
     smile
+    steam
     steam-run
     unzip
     yt-dlp
