@@ -305,5 +305,6 @@ in
     steam-run
     unzip
     yt-dlp
+    zoom-us
   ];
 }
