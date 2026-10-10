@@ -290,15 +290,20 @@ in
     amp-cli
     devin-cli
     fira-code
+    ghostscript
     gnomeExtensions.copyous
     gnomeExtensions.smile-complementary-extension
+    imagemagick
     llama-cpp
     (mistral-vibe.overrideAttrs (old: {
       doCheck = false;
       doInstallCheck = false;
     }))
+    mupdf
     nixd
     nixfmt
+    pdftk
+    qpdf
     skills
     smile
     steam
