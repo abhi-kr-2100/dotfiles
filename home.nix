@@ -180,6 +180,8 @@ in
     enableNushellIntegration = true;
   };
 
+  programs.foliate.enable = true;
+
   programs.github-copilot-cli.enable = true;
 
   programs.helix = {
