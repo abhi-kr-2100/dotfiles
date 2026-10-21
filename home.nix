@@ -97,6 +97,7 @@ in
         "com.mitchellh.ghostty.desktop"
         "dev.zed.Zed.desktop"
         "org.gnome.Nautilus.desktop"
+        "anki.desktop"
       ];
       last-selected-power-profile = "performance";
 
