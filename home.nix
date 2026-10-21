@@ -232,6 +232,7 @@ in
       app-notifications = "no-clipboard-copy";
       copy-on-select = "clipboard";
       font-family = "Fira Code";
+      font-feature = "-calt";
       font-size = 16.0;
       fullscreen = true;
       tab-inherit-working-directory = false;
