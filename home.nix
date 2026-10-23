@@ -139,6 +139,7 @@ in
 
   programs.nushell = {
     enable = true;
+    loadSessionVariables = true;
     shellAliases = {
       rm = "rm -t";
     };
