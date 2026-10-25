@@ -95,21 +95,14 @@ in
       favorite-apps = [
         "google-chrome.desktop"
         "com.mitchellh.ghostty.desktop"
-        "dev.zed.Zed.desktop"
-        "org.gnome.Nautilus.desktop"
         "anki.desktop"
+        "org.gnome.Nautilus.desktop"
       ];
-      last-selected-power-profile = "performance";
 
       disable-user-extensions = false;
       enabled-extensions = with pkgs.gnomeExtensions; [
         copyous.extensionUuid
-        smile-complementary-extension.extensionUuid
       ];
-    };
-
-    "org/gnome/Showtime/State" = {
-      is-maximized = false;
     };
   };
 
@@ -129,8 +122,6 @@ in
   };
 
   programs.antigravity-cli.enable = true;
-
-  programs.aria2.enable = true;
 
   programs.carapace = {
     enable = true;
@@ -182,10 +173,6 @@ in
     enableNushellIntegration = true;
   };
 
-  programs.foliate.enable = true;
-
-  programs.github-copilot-cli.enable = true;
-
   programs.helix = {
     enable = true;
     settings = {
@@ -202,16 +189,6 @@ in
           select = "underline";
         };
       };
-    };
-    languages = {
-      language = [
-        {
-          name = "rust";
-          formatter = {
-            command = "rustfmt";
-          };
-        }
-      ];
     };
   };
 
@@ -255,8 +232,6 @@ in
     };
   };
 
-  programs.jq.enable = true;
-
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -276,46 +251,15 @@ in
     enableNushellIntegration = true;
   };
 
-  programs.opencode.enable = true;
-
   programs.ripgrep.enable = true;
 
-  programs.zed-editor = {
-    defaultEditor = true;
-    enable = true;
-    userSettings = {
-      helix_mode = true;
-    };
-    mutableUserDebug = false;
-    mutableUserKeymaps = false;
-    mutableUserSettings = false;
-    mutableUserTasks = false;
-  };
-
   home.packages = with pkgs; [
-    amp-cli
     devin-cli
     fira-code
-    ghostscript
     gnomeExtensions.copyous
-    gnomeExtensions.smile-complementary-extension
-    imagemagick
-    llama-cpp
-    (mistral-vibe.overrideAttrs (old: {
-      doCheck = false;
-      doInstallCheck = false;
-    }))
-    mupdf
-    nixd
-    nixfmt
-    pdftk
-    qpdf
     skills
     smile
     steam
     steam-run
-    unzip
-    yt-dlp
-    zoom-us
   ];
 }
