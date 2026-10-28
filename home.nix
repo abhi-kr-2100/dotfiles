@@ -261,5 +261,6 @@ in
     smile
     steam
     steam-run
+    wl-clipboard
   ];
 }
