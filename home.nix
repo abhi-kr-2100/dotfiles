@@ -97,6 +97,7 @@ in
         "com.mitchellh.ghostty.desktop"
         "anki.desktop"
         "org.gnome.Nautilus.desktop"
+        "org.gnome.Calculator.desktop"
       ];
 
       disable-user-extensions = false;
