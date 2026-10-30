@@ -142,6 +142,7 @@ in
     package = pkgs.google-chrome;
     commandLineArgs = [
       "--disable-features=ElasticOverscroll"
+      "--enable-features=Glic"
       "--ozone-platform-hint=auto"
     ];
   };
