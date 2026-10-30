@@ -26,9 +26,12 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
+  # This is the backing store for impermanence, not the live root.
+  # configuration.nix mounts / as tmpfs and bind-mounts /persist/nix.
+  fileSystems."/persist" = {
     device = "/dev/disk/by-uuid/f312d856-d9de-4eb3-979b-7c22b9972034";
     fsType = "ext4";
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

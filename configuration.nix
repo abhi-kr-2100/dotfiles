@@ -1,9 +1,44 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    inputs.impermanence.nixosModules.impermanence
   ];
+
+  # The ext4 volume that used to be mounted at / is mounted at /persist by
+  # hardware-configuration.nix. Keep the Nix store available before the
+  # system switches to the tmpfs root.
+  fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "mode=755" "size=8G" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/persist/nix";
+    fsType = "none";
+    options = [ "bind" ];
+    neededForBoot = true;
+    depends = [ "/persist" ];
+  };
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/etc/NetworkManager/system-connections"
+      "/var/lib/AccountsService"
+      "/var/lib/NetworkManager"
+      "/var/lib/bluetooth"
+      "/var/lib/colord"
+      "/var/lib/docker"
+      "/var/lib/nixos"
+      "/var/lib/systemd"
+      "/var/lib/waydroid"
+      "/var/log"
+    ];
+    files = [ "/etc/machine-id" ];
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

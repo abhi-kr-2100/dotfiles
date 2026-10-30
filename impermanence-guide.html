@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impermanence setup for box</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { max-width: 920px; margin: 3rem auto; padding: 0 1.25rem; color: #1d252c; background: #f6f8fa; font: 17px/1.6 system-ui, sans-serif; }
+    article { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 1px 10px #0001; }
+    code { background: #eef1f4; padding: .12em .3em; border-radius: 4px; } pre { background: #17212b; color: #e8edf2; padding: 1rem; overflow: auto; border-radius: 8px; }
+    h1, h2, h3 { line-height: 1.2; } h2 { margin-top: 2rem; } li { margin: .35rem 0; }
+    .note, .warning { padding: .75rem 1rem; border-radius: 6px; } .note { border-left: 4px solid #2878b5; background: #eef7ff; } .warning { border-left: 4px solid #d98120; background: #fff7e8; }
+    @media (prefers-color-scheme: dark) { body { color: #e4e8eb; background: #12171c; } article { background: #1b232b; } code { background: #2a3540; } .note { background: #142b3c; } .warning { background: #3b2b14; } }
+  </style>
+</head>
+<body><article>
+  <h1>Impermanence on <code>box</code></h1>
+  <p>This is the complete operating guide for this machine’s NixOS impermanence setup. Read “First activation” before applying the configuration.</p>
+
+  <h2>What this setup does</h2>
+  <p>Normally, every file written to Linux stays on disk. Here, the live root filesystem (<code>/</code>) is a <em>tmpfs</em>: a filesystem held in memory. Each boot starts with a fresh root, so files not explicitly preserved disappear at reboot. This is called <strong>impermanence</strong>.</p>
+  <p>It keeps operating-system state tidy and reproducible. It is not a backup, a security boundary, or disk encryption. Important files still need an independent backup, and persistent data remains unencrypted unless full-disk encryption was separately configured.</p>
+
+  <h2>Glossary</h2>
+  <dl>
+    <dt><strong>NixOS</strong></dt><dd>A Linux distribution configured with Nix expressions instead of manual edits under <code>/etc</code>.</dd>
+    <dt><strong>Flake</strong></dt><dd>A version-pinned Nix project. <code>flake.nix</code> describes inputs and outputs; <code>flake.lock</code> records exact revisions for repeatable builds.</dd>
+    <dt><strong>Home Manager</strong></dt><dd>The user-level configuration system. Here it manages Abhishek’s applications and home-directory settings from <code>home.nix</code>.</dd>
+    <dt><strong>Generation</strong></dt><dd>An immutable NixOS system version. Every successful rebuild creates one, and systemd-boot can start an older one.</dd>
+    <dt><strong>Persistence</strong></dt><dd>A disk-backed path mounted into the otherwise fresh tmpfs root or home directory.</dd>
+  </dl>
+
+  <h2>Disk layout and design</h2>
+  <p>This computer has one ext4 root partition, one EFI boot partition, and swap; there is no separate persistence partition. Nothing is reformatted or deleted. The existing ext4 root partition is mounted at <code>/persist</code> early in boot, the live <code>/</code> is an 8 GiB maximum tmpfs, and <code>/nix</code> is bind-mounted from <code>/persist/nix</code>. The Nix store stays on disk and is neither copied to memory nor lost on reboot.</p>
+  <p>The original disk contents remain below <code>/persist</code>. Do not reformat it, delete it, or mount over it: it holds both the Nix store and all persistent state.</p>
+
+  <h2>Where the configuration lives</h2>
+  <p>Everything is in <code>/home/abhi/.dotfiles</code>, not <code>/etc/nixos</code>. That repository is persistent.</p>
+  <ul>
+    <li><code>flake.nix</code>: declares Nixpkgs, Home Manager, and impermanence.</li>
+    <li><code>flake.lock</code>: pins exact dependency revisions. Commit it whenever inputs change.</li>
+    <li><code>configuration.nix</code>: machine-wide settings and system persistence.</li>
+    <li><code>home.nix</code>: user settings and home-directory persistence.</li>
+    <li><code>hardware-configuration.nix</code>: mounts the existing ext4 device at <code>/persist</code>. Its usual generated-file warning is overridden intentionally. Do not casually regenerate or overwrite it.</li>
+  </ul>
+
+  <h2>Exactly what survives a reboot</h2>
+  <h3>System paths</h3>
+  <ul>
+    <li><code>/etc/machine-id</code>, keeping the machine identity stable.</li>
+    <li>Saved Wi-Fi/VPN connections, NetworkManager state, Bluetooth pairings, account data, and colour profiles.</li>
+    <li>Docker, Waydroid, NixOS, and systemd state.</li>
+    <li><code>/var/log</code>, so logs remain available for debugging.</li>
+  </ul>
+  <h3>Abhi’s home-directory paths</h3>
+  <ul>
+    <li><code>.config</code>, <code>.local/share</code>, and <code>.local/state</code>, including GNOME and Home Manager settings.</li>
+    <li><code>.ssh</code>, <code>.gnupg</code>, <code>.mozilla</code>, <code>.docker</code>, <code>.steam</code>, and <code>.android</code>.</li>
+    <li><code>Android</code>, <code>Desktop</code>, <code>Documents</code>, <code>Downloads</code>, <code>Pictures</code>, <code>Projects</code>, and <code>.dotfiles</code>.</li>
+  </ul>
+  <p>Everything else is temporary unless it lives below one of those directories. In particular, unlisted top-level directories such as <code>.cache</code>, <code>.cargo</code>, <code>.rustup</code>, <code>.npm</code>, and tool-session directories such as <code>.vibe</code> reset at reboot. This can cause downloads or caches to be recreated; add a path only when retaining it is useful.</p>
+
+  <h2>Before first activation</h2>
+  <div class="warning"><strong>Make an independent backup first.</strong> The listed paths are designed to survive, but backups protect against configuration mistakes, hardware failure, and accidental deletion. Copy important documents, projects, SSH keys, GnuPG keys, and this repository to an external disk or trusted remote destination. Verify the backup is readable.</div>
+  <ul>
+    <li>Keep the computer on AC power and do not force-power-off during a rebuild.</li>
+    <li>Save work and close important applications before rebooting.</li>
+    <li>Ensure the current system boots normally before making the change.</li>
+    <li><code>sudo</code> asks for the account password. Nothing appears while entering it; that is normal.</li>
+  </ul>
+
+  <h2>First activation</h2>
+  <p>Run these commands in a terminal. The first builds and validates without changing the running system. The second activates a new generation. The reboot is when the tmpfs root takes effect.</p>
+  <pre>cd /home/abhi/.dotfiles
+sudo nixos-rebuild build --flake .#box
+sudo nixos-rebuild switch --flake .#box
+sudo reboot</pre>
+  <p>Do not use <code>nixos-rebuild</code> against <code>/etc/nixos</code> on this machine. The <code>.#box</code> selects the <code>box</code> configuration in this repository. The initial reboot may take a little longer while mounts and services start.</p>
+
+  <h2>Verify it worked</h2>
+  <p>After logging in again, run:</p>
+  <pre>findmnt / /persist /nix
+touch /tmp/impermanence-test
+sudo reboot</pre>
+  <p>After the next login, confirm the temporary test is gone:</p>
+  <pre>test ! -e /tmp/impermanence-test &amp;&amp; echo "temporary file was removed"</pre>
+  <p>Also check <code>~/Projects</code>, <code>~/.ssh</code>, Wi-Fi, GNOME settings, and this repository. <code>findmnt</code> should show tmpfs for <code>/</code>, ext4 for <code>/persist</code>, and a bind mount for <code>/nix</code>.</p>
+
+  <h2>Everyday Nix workflow</h2>
+  <p>Edit the Nix files in this repository and apply changes with:</p>
+  <pre>cd /home/abhi/.dotfiles
+sudo nixos-rebuild switch --flake .#box</pre>
+  <p>No separate <code>home-manager switch</code> is needed; Home Manager is integrated. Use <code>sudo nixos-rebuild test --flake .#box</code> to activate only until the next reboot, or <code>sudo nixos-rebuild build --flake .#box</code> to build without activating.</p>
+  <p>To update only impermanence later, run <code>nix flake update impermanence</code>, review the <code>flake.lock</code> diff, then rebuild. Updating inputs is optional and not needed for ordinary edits.</p>
+
+  <h2>Making another path persistent</h2>
+  <p>If an application loses important state, first find where it writes files. User paths are commonly in <code>~/.config</code>, <code>~/.local/share</code>, or a dot-directory; system services often use <code>/var/lib</code>.</p>
+  <ol>
+    <li>For an Abhi home-directory path, add its relative name to <code>directories</code> in <code>home.nix</code>. Example: add <code>".vibe"</code> to retain that tool’s state.</li>
+    <li>For a system directory, add its absolute path to <code>environment.persistence."/persist".directories</code> in <code>configuration.nix</code>. Example: <code>"/var/lib/example-service"</code>.</li>
+    <li>For a single system file, add its absolute path to the <code>files</code> list instead.</li>
+    <li>Run <code>sudo nixos-rebuild switch --flake /home/abhi/.dotfiles#box</code>, reboot, and test it.</li>
+  </ol>
+  <p>Prefer the smallest required path. Do not add all of <code>/home</code>, <code>/var</code>, or <code>/</code>; that would largely defeat impermanence.</p>
+
+  <h2>Recovery and troubleshooting</h2>
+  <ul>
+    <li><strong>A path disappeared:</strong> look for its old copy under <code>/persist/home/abhi</code> (or <code>/persist/var</code> for system data), add the path to the appropriate list, rebuild, and reboot. Copy it back only after confirming the persistent mount is correct.</li>
+    <li><strong>The new generation does not boot:</strong> at the systemd-boot menu select an older NixOS generation. It uses the earlier configuration, allowing you to fix the repository and rebuild.</li>
+    <li><strong>Root tmpfs is full:</strong> 8 GiB is a maximum allocation, not memory reserved at boot. Clear temporary files or adjust <code>size=8G</code> in <code>configuration.nix</code>, then rebuild. The Nix store is disk-backed at <code>/nix</code>.</li>
+    <li><strong><code>/persist</code> or <code>/nix</code> did not mount:</strong> boot a previous generation and inspect the UUID in <code>hardware-configuration.nix</code>. Never format the ext4 volume; it contains recovery data.</li>
+    <li><strong>Undo the last generation:</strong> after booting, <code>sudo nixos-rebuild switch --rollback</code> selects the preceding generation. It does not delete data.</li>
+  </ul>
+
+  <h2>Safety limits</h2>
+  <ul>
+    <li>Impermanence is not secure deletion, encryption, or a backup.</li>
+    <li>Do not run <code>nixos-generate-config</code> casually; it can overwrite the required <code>/persist</code> mount in <code>hardware-configuration.nix</code>.</li>
+    <li>Do not manually remove, reformat, or mount over <code>/persist</code>.</li>
+    <li>When adding a new application, test one reboot before relying on its data.</li>
+  </ul>
+</article></body>
+</html>

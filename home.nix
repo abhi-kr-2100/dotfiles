@@ -20,6 +20,29 @@ in
 
   programs.home-manager.enable = true;
 
+  # Personal data, credentials, and app settings survive reboot. Caches not
+  # listed here intentionally remain ephemeral.
+  home.persistence."/persist" = {
+    directories = [
+      ".android"
+      ".config"
+      ".docker"
+      ".gnupg"
+      ".local/share"
+      ".local/state"
+      ".mozilla"
+      ".ssh"
+      ".steam"
+      "Android"
+      "Desktop"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Projects"
+      ".dotfiles"
+    ];
+  };
+
   ###################################################################
 
   xdg.terminal-exec = {
